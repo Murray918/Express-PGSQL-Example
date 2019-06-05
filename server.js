@@ -14,5 +14,6 @@ express()
 .use(express.json())
 .use(express.urlencoded({extended: false}))
 .use('/', notesRouter)
+.get('*', (req, res) => res.render('404'))
 .listen(port, () => console.log(`Listening on ${port}`))
 
