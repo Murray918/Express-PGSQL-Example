@@ -19,7 +19,7 @@ async function index(req, res) {
             notes 
         });
     } catch (error) {
-        res.redirect('/error')
+        res.redirect('/error');
     }
 }
 

@@ -47,7 +47,7 @@ async function findByIdAndDelete(id) {
         const deletedNote = db.one(`
         DELETE FROM notes
         WHERE note_id = $1
-        RETURNING *`, id)
+        RETURNING *`, id);
         return deletedNote;
     } catch (error) {
         return error;
@@ -60,7 +60,7 @@ async function findByIdAndUpdate(id, {title, body}) {
         UPDATE notes
         SET title = $1, body = $2
         WHERE note_id = $3
-        RETURNING *`, [title, body, id])
+        RETURNING *`, [title, body, id]);
         return updatedNote;
     } catch (error) {
         return error;
