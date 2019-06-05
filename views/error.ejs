@@ -8,18 +8,8 @@
     <title><%= title %></title>
 </head>
 <body>
-
-    <h3><%= title %></h3>
-    <p>Here are your notes by title:</p>
-
-    <% notes.forEach((n, idx) => { %>
-        <a href="/notes/<%= n.note_id %>">
-            <p>
-                <%= idx + 1 %>) <%= n.title %> |
-                <small>click for more detail</small>
-            <p>
-        </a>
-    <% })%>
-
+    <h1>Uh Oh!</h1>
+    <p>An error has occured</p>
+    <a href="/">Go Back Home</a>
 </body>
 </html>
