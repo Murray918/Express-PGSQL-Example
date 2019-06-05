@@ -4,15 +4,17 @@ module.exports = {
     find,
     findById,
     create,
-    findByIdAndDelete
-}
+    findByIdAndDelete,
+    findByIdAndUpdate
+};
 
 async function find() {
     try {
-        const notes = await db.query(`SELECT * FROM notes`)
-        return notes
+        const notes = await db.query(`
+        SELECT * FROM notes`);
+        return notes;
     } catch (error) {
-        return error
+        return error;
     }
 }
 
@@ -47,6 +49,19 @@ async function findByIdAndDelete(id) {
         WHERE note_id = $1
         RETURNING *`, id)
         return deletedNote;
+    } catch (error) {
+        return error;
+    }
+}
+
+async function findByIdAndUpdate(id, {title, body}) {
+    try {
+        const updatedNote = db.one(`
+        UPDATE notes
+        SET title = $1, body = $2
+        WHERE note_id = $3
+        RETURNING *`, [title, body, id])
+        return updatedNote;
     } catch (error) {
         return error;
     }

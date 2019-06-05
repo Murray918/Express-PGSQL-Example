@@ -6,6 +6,8 @@ module.exports = {
     error,
     create,
     remove,
+    edit,
+    update,
     new: newNote
 };
 
@@ -51,11 +53,33 @@ async function remove(req, res) {
     }
 }
 
+async function edit(req, res) {
+    try {
+        const note = await Note.findById(req.params.id)
+        res.render('edit', {
+            title: `Edit details of: ${note.title}`,
+            note
+        });
+    } catch (error) {
+        res.redirect('/error');
+    }
+}
+
+async function update(req, res) {
+    try {
+        const note = await Note.findByIdAndUpdate(req.params.id, req.body);
+        res.redirect(`/notes/${req.params.id}`);
+    } catch (error) {
+        res.redirect('/error');
+    }
+}
+
 function newNote(req, res) {
     res.render('new', {
         title: 'Create a New Note'
     });
 }
+
 
 function error(req, res) {
     res.render('error', {
