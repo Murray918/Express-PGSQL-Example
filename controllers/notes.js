@@ -3,7 +3,9 @@ const Note = require('../models/note');
 module.exports = {
     index,
     show,
-    error
+    error,
+    create,
+    new: newNote
 };
 
 async function index(req, res) {
@@ -30,6 +32,20 @@ async function show(req, res) {
     }
 }
 
+async function create(req, res) {
+    try {
+        await Note.create(req.body);
+        res.redirect('/');
+    } catch (error) {
+        res.redirect('/error');
+    }
+}
+
+function newNote(req, res) {
+    res.render('new', {
+        title: 'Create a New Note'
+    });
+}
 
 function error(req, res) {
     res.render('error', {

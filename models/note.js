@@ -2,7 +2,8 @@ const db = require('../config/database');
 
 module.exports = {
     find,
-    findById
+    findById,
+    create
 }
 
 async function find() {
@@ -20,6 +21,18 @@ async function findById(id) {
         SELECT * 
         FROM notes
         WHERE note_id = $1`, id);
+        return note;
+    } catch (error) {
+        return error;
+    }
+}
+
+async function create({ title, body }) {
+    try {
+        const note = await db.one(`
+        INSERT INTO notes(title, body)
+        VALUES($1, $2) RETURNING *`, 
+        [title,body]);
         return note;
     } catch (error) {
         return error;
