@@ -16,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/Daniel-J-S/Express-PGSQL-Example/issues"
   },
-  "homepage": "https://github.com/Daniel-J-S/Express-PGSQL-Example#readme"
+  "homepage": "https://github.com/Daniel-J-S/Express-PGSQL-Example#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.17.1",
+    "method-override": "^3.0.0",
+    "morgan": "^1.9.1",
+    "pg-promise": "^8.7.2"
+  }
 }

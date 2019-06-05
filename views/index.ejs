@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <title><%= title %></title>
+</head>
+<body>
+
+    <h3><%= title %></h3>
+    <p>Here are your notes by title:</p>
+
+    <% notes.forEach((n, idx) => { %>
+        <a href="/notes/<%= n.note_id %>">
+            <p>
+                <%= idx + 1 %>) <%= n.title %> |
+                <small>click for more detail</small>
+            <p>
+        </a>
+    <% })%>
+
+    <a href="/notes/new">
+        <p>Create a new note</p>
+    </a>
+    
+</body>
+</html>
