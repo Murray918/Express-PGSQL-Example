@@ -5,6 +5,7 @@ module.exports = {
     show,
     error,
     create,
+    remove,
     new: newNote
 };
 
@@ -35,6 +36,15 @@ async function show(req, res) {
 async function create(req, res) {
     try {
         await Note.create(req.body);
+        res.redirect('/');
+    } catch (error) {
+        res.redirect('/error');
+    }
+}
+
+async function remove(req, res) {
+    try {
+        await Note.findByIdAndDelete(req.params.id);
         res.redirect('/');
     } catch (error) {
         res.redirect('/error');

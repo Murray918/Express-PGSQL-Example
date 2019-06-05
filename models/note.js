@@ -3,7 +3,8 @@ const db = require('../config/database');
 module.exports = {
     find,
     findById,
-    create
+    create,
+    findByIdAndDelete
 }
 
 async function find() {
@@ -34,6 +35,18 @@ async function create({ title, body }) {
         VALUES($1, $2) RETURNING *`, 
         [title,body]);
         return note;
+    } catch (error) {
+        return error;
+    }
+}
+
+async function findByIdAndDelete(id) {
+    try {
+        const deletedNote = db.one(`
+        DELETE FROM notes
+        WHERE note_id = $1
+        RETURNING *`, id)
+        return deletedNote;
     } catch (error) {
         return error;
     }
